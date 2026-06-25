@@ -46,13 +46,14 @@ router.post('/SingUp',upload.single('photo'),[
 
         res.cookie("authtoken", authtoken, {
             httpOnly: true,
-            sameSite: 'lax',
-            secure: false
+            secure: true,
+            sameSite: "None",
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
-        console.log({authtoken});
+        console.log("Cookies received:", req.cookies);
 
-        res.send({authtoken});
+        res.send({"authtoken":authtoken});
 
     } 
     catch (error) 
@@ -103,13 +104,14 @@ router.post('/login',[
 
         res.cookie("authtoken", authtoken, {
             httpOnly: true,
-            sameSite: 'lax',
-            secure: false
+            secure: true,
+            sameSite: "None",
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
-        console.log({authtoken});
+        console.log("Cookies:", req.cookies);
 
-        res.send({authtoken});
+        res.send({"authtoken":authtoken});
 
     } 
     catch (error) 
@@ -147,7 +149,7 @@ router.post('/featchuser', getuser, async (req, res) => {
     const userid = req.user.id; // ✅ no await
     const user_to_featch = await userSchema.findById(userid).select("-password"); // optional: exclude password
 
-    if (!user_to_featch) 
+    if (!user_to_featch)
     {
       return res.status(404).send("User not found");
     }
