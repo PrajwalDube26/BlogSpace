@@ -19,7 +19,7 @@ const BlogState = (props) => {
     formData.append("password", password);
     formData.append("photo", photo); // <-- photo must be File object from <input type="file">
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/auth2/SingUp`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/auth2/SingUp`, {
       method: "POST",
       body: formData,
       credentials: "include"
@@ -35,7 +35,7 @@ const BlogState = (props) => {
 
   const login=async(email,password)=>{
     //api call
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/auth2/login`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/auth2/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -53,7 +53,7 @@ const BlogState = (props) => {
 
   const logout=async()=>{
     //api call
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/auth2/logout`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/auth2/logout`, {
       method: "POST",
       credentials: "include"
 
@@ -67,7 +67,7 @@ const BlogState = (props) => {
   const featchuser = async() =>{
 
     //api call
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/auth2/featchuser`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/auth2/featchuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -86,7 +86,7 @@ const BlogState = (props) => {
   const featchblogs = async() =>{
 
     //api call
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/featchownblog`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/featchownblog`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -108,7 +108,7 @@ const BlogState = (props) => {
   const featchallblogs = async() =>{
 
     //api call
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/featchAllblog`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/featchAllblog`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -130,7 +130,7 @@ const BlogState = (props) => {
 
   const add_blog = async (title, content) => {
     try {
-      const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/addblog`, {
+      const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/addblog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -163,7 +163,7 @@ const BlogState = (props) => {
 
   const togglelike=async(id)=>{
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/togglelikes/${id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/togglelikes/${id}`, {
       method: "POST",
       credentials: "include"
     });
@@ -178,7 +178,7 @@ const BlogState = (props) => {
 
   const getblogbyid=async(id)=>{
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/getblogbyid/${id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/getblogbyid/${id}`, {
       method: "GET",
       credentials: "include"
     });
@@ -189,7 +189,7 @@ const BlogState = (props) => {
 
   const addcomment=async(id,commentbody)=>{
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/addcomments/${id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/addcomments/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -206,14 +206,14 @@ const BlogState = (props) => {
 
 
   const getcomments=async(blog_id)=>{
-    const response0 = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/getblogbyid/${blog_id}`, {
+    const response0 = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/getblogbyid/${blog_id}`, {
       method: "GET",
       credentials: "include"
     });
     const blogdata = await response0.json();
     setblog([blogdata]);
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/getcomments_by_blogid/${blog_id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/getcomments_by_blogid/${blog_id}`, {
       method: "GET",
       credentials: "include"
     });
@@ -226,7 +226,7 @@ const BlogState = (props) => {
 
   const getlikes=async(blog_id)=>{
 
-    const response0 = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/getblogbyid/${blog_id}`, {
+    const response0 = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/getblogbyid/${blog_id}`, {
       method: "GET",
       credentials: "include"
     });
@@ -234,7 +234,7 @@ const BlogState = (props) => {
     setblog([blogdata]);
 
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/getlikes_by_blogid/${blog_id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/getlikes_by_blogid/${blog_id}`, {
       method: "GET",
       credentials: "include"
     });
@@ -247,7 +247,7 @@ const BlogState = (props) => {
 
   const deleteblog=async( id )=>{
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/delete_blog/${id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/delete_blog/${id}`, {
       method: "DELETE",
       credentials: "include"
 
@@ -264,7 +264,7 @@ const BlogState = (props) => {
 
   const editblog=async( id ,title,content)=>{
 
-    const response = await fetch(`https://blogspace-backend-shaz.onrender.com//api/blog_route/update_blog/${id}`, {
+    const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/update_blog/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
