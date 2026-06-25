@@ -8,7 +8,7 @@ const FeatchUser = () => {
     
     useEffect(() => {
         featchuser();
-    }, []);
+    }, [featchuser]);
 
     // Generate initials for avatar
     const getInitials = (name) => {

@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useRef,useState } from 'react';
 import blogContext from '../context/blog/blogcontext';
-import { Modal } from 'bootstrap';
 import './blogitem.css';
 
 const BlogItem = () => {
   const blog_context = useContext(blogContext);
-  const { deleteblog,togglelike,getlikes,likes, editblog,getblogbyid, setblog, featchblogs,getcomments,comments,featchallblogs, blog,addcomment } = blog_context;
+  const { deleteblog,togglelike,getlikes,likes, editblog,getblogbyid,getcomments,comments,featchallblogs, blog,addcomment } = blog_context;
 
   const modalRef = useRef(null); // ✅ Modal DOM ref
   const modalInstance = useRef(null); // ✅ Bootstrap Modal instance
@@ -63,7 +62,7 @@ const BlogItem = () => {
 
   useEffect(() => {
     featchallblogs();
-  }, []);
+  }, [featchallblogs]);
 
   return (
     <div>

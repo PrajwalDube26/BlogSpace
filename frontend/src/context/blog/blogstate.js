@@ -59,7 +59,7 @@ const BlogState = (props) => {
 
     });
 
-    console.log("Logout successfully");
+    console.log("Logout successfully\n",response);
 
   }
 
@@ -255,6 +255,8 @@ const BlogState = (props) => {
     //const json=await response.json();
 
     console.log("deleteing blog with id" + id)
+    console.log(response);
+    
     const blogs_after_delete=blog.filter((blogs)=>blogs._id !==id)
     setblog(blogs_after_delete)
   }
@@ -271,6 +273,8 @@ const BlogState = (props) => {
       body: JSON.stringify({title,content}),
 
     });
+
+    console.log(response);
     
 
     let newblog=JSON.parse(JSON.stringify(blog))
