@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 const getuser=require('../middleware/getuser')
 const upload = require('../middleware/multer')
 
-const jwt_secret="prajwalisgoodb@y";
+const jwt_secret=process.env.JWT_SECRET;
 
 //Router 1:SingUp  :: login not required
 
@@ -121,7 +121,7 @@ router.post('/login',[
 })
 
 
-//Router 3:login  :: login not required
+//Router 3:logout  :: login not required
 
 router.post('/logout',async(req,res)=>{
     

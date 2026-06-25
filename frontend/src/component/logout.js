@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import blogContext from '../context/blog/blogcontext';
 
-const logout = () => {
+const Logout = () => {
     const blog_context = useContext(blogContext);
     const { logout } = blog_context;
     
@@ -11,9 +11,9 @@ const logout = () => {
     }
     return (
         <div>
-        <button onClick={onclicklogout}>confirm Logout</button>
+            <button onClick={onclicklogout}>confirm Logout</button>
         </div>
     )
 }
 
-export default logout
+export default Logout;

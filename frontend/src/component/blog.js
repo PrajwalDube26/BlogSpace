@@ -1,6 +1,6 @@
 import Blogitem from './blogitem';
 import ErrorBoundary from './ErrorBoundary';
-const blog = () => {
+const Blog = () => {
   return (
     <div>
 
@@ -12,4 +12,4 @@ const blog = () => {
   )
 }
 
-export default blog
+export default Blog

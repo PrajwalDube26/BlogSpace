@@ -22,7 +22,7 @@ const userSchema = new Schema({
     photo: {
         type:String,
         default:null
-    }    
+    }
 },{
     timestamps:true
 });

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef,useState } from 'react';
 import blogContext from '../context/blog/blogcontext';
 import { Modal } from 'bootstrap';
+import './blogitem.css';
 
 const BlogItem = () => {
   const blog_context = useContext(blogContext);
-  const { deleteblog,togglelike,getlikes,likes, editblog, setblog, featchblogs,getcomments,comments,featchallblogs, blog,addcomment } = blog_context;
+  const { deleteblog,togglelike,getlikes,likes, editblog,getblogbyid, setblog, featchblogs,getcomments,comments,featchallblogs, blog,addcomment } = blog_context;
 
   const modalRef = useRef(null); // ✅ Modal DOM ref
   const modalInstance = useRef(null); // ✅ Bootstrap Modal instance
@@ -36,9 +37,13 @@ const BlogItem = () => {
     setBlog({...Blog,[e.target.name]: e.target.value})
   }
 
-  const startcomment=(e)=>{
-    e.preventDefault();
+  const startcomment=(id)=>{
+    getblogbyid(id);
     setcommentform(false);
+  }
+
+  const getblog=(id)=>{
+    getblogbyid(id);
   }
 
   const startseelike=()=>{
@@ -107,7 +112,7 @@ const BlogItem = () => {
         <p>No blogs to display</p>
       ) : (
         blog.map((b) => (
-          <div key={b._id} className="card my-2 p-2">
+          <div key={b._id} className="card my-2 p-2" onClick={() => getblog(b._id)}>
             <div>
               <h5>{b.title}</h5>
             </div>
@@ -121,7 +126,7 @@ const BlogItem = () => {
               <button className="mx-3" onClick={() => togglelike(b._id)} >add/remove like</button>
               
               {commentform && (
-                <button className="mx-1" onClick={startcomment}>add comment</button>
+                <button className="mx-1" onClick={e => { e.preventDefault(); startcomment(b._id); }} >add comment</button>
               )}
 
               {!commentform && (

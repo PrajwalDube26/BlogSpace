@@ -3,7 +3,7 @@ import blogContext from '../context/blog/blogcontext';
 import './Signup.css';
 
 
-const login = () => {
+const Login = () => {
     const blog_context = useContext(blogContext);
     const { login } = blog_context;
 
@@ -173,4 +173,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login

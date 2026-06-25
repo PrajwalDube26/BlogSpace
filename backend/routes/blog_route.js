@@ -186,6 +186,25 @@ body('content').isLength({ min: 10 })
 })
 
 
+//Router 7:getblogbyid  :: login required
+router.get('/getblogbyid/:id',getuser,async(req,res)=>{
+    try {
+      const {id}=req.params;
+      const blog = await blogsSchema.findById(id);
+      if (!blog) {
+        return res.status(404).send("Blog not found");
+      }
+      res.json(blog);
+    } 
+    catch (error) 
+    {
+        console.error(error.message);
+        return res.status(500).send("internal server error occure");
+    }
+})
+
+
+
 //Router 8:getlikes  :: login required
 
 router.get('/getlikes/:id',getuser,async(req,res)=>{
@@ -235,10 +254,10 @@ router.post('/togglelikes/:id',getuser,async(req,res)=>{
       
       await blog.save();
 
-      const blogs = await blogsSchema.find({});
+      const blogs = await blogsSchema.find({_id:id});
       res.json(blogs);
     } 
-    catch (error) 
+    catch (error)
     {
         console.error(error.message);
         return res.status(500).send("internal server error occure");
@@ -317,10 +336,10 @@ router.post('/addcomments/:id',getuser, async (req, res) => {
       blog.comments.push(newcomment);
       await blog.save();
 
-      const blogs = await blogsSchema.find({});
+      const blogs = await blogsSchema.find({_id:id});
       res.json(blogs);
 
-    } 
+    }
     catch (error) {
       console.error("Error in /addcomments/:id", error);
       return res.status(500).json({ error: "Internal server error occurred"});

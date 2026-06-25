@@ -1,6 +1,6 @@
 import Blog from './blog';
 
-const home = () => {
+const Home = () => {
   return (
     <div className='my-3'>
 
@@ -10,4 +10,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home

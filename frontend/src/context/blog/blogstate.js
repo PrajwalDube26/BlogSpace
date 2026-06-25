@@ -128,7 +128,7 @@ const BlogState = (props) => {
 
 
 
-  const addblog = async (title, content) => {
+  const add_blog = async (title, content) => {
     try {
       const response = await fetch(`http://localhost:5000/api/blog_route/addblog`, {
         method: "POST",
@@ -162,6 +162,7 @@ const BlogState = (props) => {
 
 
   const togglelike=async(id)=>{
+
     const response = await fetch(`http://localhost:5000/api/blog_route/togglelikes/${id}`, {
       method: "POST",
       credentials: "include"
@@ -175,7 +176,19 @@ const BlogState = (props) => {
   }
 
 
+  const getblogbyid=async(id)=>{
+
+    const response = await fetch(`http://localhost:5000/api/blog_route/getblogbyid/${id}`, {
+      method: "GET",
+      credentials: "include"
+    });
+    const blogdata = await response.json();
+    setblog([blogdata]);
+
+  }
+
   const addcomment=async(id,commentbody)=>{
+
     const response = await fetch(`http://localhost:5000/api/blog_route/addcomments/${id}`, {
       method: "POST",
       headers: {
@@ -193,6 +206,13 @@ const BlogState = (props) => {
 
 
   const getcomments=async(blog_id)=>{
+    const response0 = await fetch(`http://localhost:5000/api/blog_route/getblogbyid/${blog_id}`, {
+      method: "GET",
+      credentials: "include"
+    });
+    const blogdata = await response0.json();
+    setblog([blogdata]);
+
     const response = await fetch(`http://localhost:5000/api/blog_route/getcomments_by_blogid/${blog_id}`, {
       method: "GET",
       credentials: "include"
@@ -205,13 +225,22 @@ const BlogState = (props) => {
 
 
   const getlikes=async(blog_id)=>{
+
+    const response0 = await fetch(`http://localhost:5000/api/blog_route/getblogbyid/${blog_id}`, {
+      method: "GET",
+      credentials: "include"
+    });
+    const blogdata = await response0.json();
+    setblog([blogdata]);
+
+
     const response = await fetch(`http://localhost:5000/api/blog_route/getlikes_by_blogid/${blog_id}`, {
       method: "GET",
       credentials: "include"
     });
 
     const json = await response.json();
-    console.log("comments for blog with id" + blog_id, json);
+    console.log("likes for blog with id" + blog_id, json);
     setlikes(json);
   }
 
@@ -260,7 +289,7 @@ const BlogState = (props) => {
 
 
   return (
-    <BlogContext.Provider value={{blog,addblog,deleteblog,addcomment,getcomments,comments,togglelike,getlikes,likes,editblog,featchblogs,featchallblogs,setblog,Signup,login,logout,featchuser,user_detail}}>
+    <BlogContext.Provider value={{blog,getblogbyid,add_blog,deleteblog,addcomment,getcomments,comments,togglelike,getlikes,likes,editblog,featchblogs,featchallblogs,setblog,Signup,login,logout,featchuser,user_detail}}>
       {props.children}
     </BlogContext.Provider>
   );

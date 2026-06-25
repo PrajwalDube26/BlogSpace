@@ -1,7 +1,7 @@
 import React ,{useContext} from 'react'
 import blogContext from '../context/blog/blogcontext';
 
-const about = () => {
+const About = () => {
   const context=useContext(blogContext);
   return (
     <div>
@@ -10,4 +10,4 @@ const about = () => {
   )
 }
 
-export default about
+export default About

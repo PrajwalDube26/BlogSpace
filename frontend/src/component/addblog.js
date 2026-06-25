@@ -2,16 +2,16 @@ import React ,{useContext,useState} from 'react'
 import blogContext from '../context/blog/blogcontext'
 
 
-const addblog = () => {
+const Addblog = () => {
   const blog_context=useContext(blogContext);
-  const {addblog}=blog_context;
+  const {add_blog}=blog_context;
 
   let bloginit={title:"",content:"",}
 
   const [Blog, setBlog] = useState(bloginit)
   const handleclick=(e)=>{
     e.preventDefault();
-    addblog(Blog.title,Blog.content);
+    add_blog(Blog.title,Blog.content);
     setBlog({title:"",content:""})
   }
 
@@ -47,4 +47,4 @@ const addblog = () => {
   )
 }
 
-export default addblog
+export default Addblog

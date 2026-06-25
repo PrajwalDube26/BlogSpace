@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
+require("dotenv").config();
 
-const mongoURI = "mongodb://localhost:27017/BLOG_WEB";
+const mongoURI = process.env.MONGO_URI
 
 const connecttomongo = async () => {
     try {
-        await mongoose.connect(mongoURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect(mongoURI);
         console.log("✅ Connected to MongoDB successfully");
     } catch (error) {
         console.error("❌ Failed to connect to MongoDB:", error.message);

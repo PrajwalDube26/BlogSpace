@@ -1,13 +1,15 @@
+require("dotenv").config();
+
 const connecttomongo =require('./db');
 const express = require('express')
 var cors = require('cors')
 const cookieParser = require("cookie-parser");
 
+
 connecttomongo();
 
 const app = express() 
-const port = 5000
-
+const port = process.env.PORT || 5000;
 
 const corsOptions = {
   origin: "http://localhost:3000", // 👈 must be exact

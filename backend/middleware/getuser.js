@@ -24,7 +24,7 @@
 
 
 const jwt = require('jsonwebtoken');
-const jwt_secret = "prajwalisgoodb@y";
+const jwt_secret = process.env.JWT_SECRET;
 
 const getuser = (req, res, next) => {
   console.log("Cookies in getuser:", req.cookies);
