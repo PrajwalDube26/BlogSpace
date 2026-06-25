@@ -1,13 +1,9 @@
 import './App.css';
 import {
-  BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
   Routes
 } from "react-router-dom";
 
-import React ,{useContext} from 'react'
 import Blogstate from './context/blog/blogstate';
 
 import Navbar from './component/navbar';
