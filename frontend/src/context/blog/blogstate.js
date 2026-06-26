@@ -263,7 +263,7 @@ const BlogState = (props) => {
 
 
   const editblog=async( id ,title,content)=>{
-
+    
     const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/blog_route/update_blog/${id}`, {
       method: "POST",
       headers: {
