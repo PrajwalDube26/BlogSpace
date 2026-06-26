@@ -72,7 +72,11 @@ const BlogState = (props) => {
       credentials: "include"
 
     });
-
+    
+    if (response.ok) 
+    {
+      setuser_detail(null);
+    }
     console.log("Logout successfully\n",response);
 
   }

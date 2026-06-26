@@ -18,7 +18,7 @@ router.post('/SingUp',[
 
 ],async(req,res)=>{
     console.log(req.body);
-    
+
     const myValidationResult = validationResult(req);
     if (!myValidationResult.isEmpty()) {
         console.log("Validation Errors:", myValidationResult.array());
@@ -139,13 +139,24 @@ router.post('/logout',async(req,res)=>{
     
     try
     {
-        res.clearCookie("authtoken");
-        return res.status(200).send("Logout successfully");
+        res.clearCookie("authtoken", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Logout successfully"
+        });
     } 
     catch (error) 
     {
         console.error(error.message);
-        return res.status(500).send("internal server error occure");
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error occurred"
+        });
     }
 
 })
