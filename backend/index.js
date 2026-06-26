@@ -12,7 +12,7 @@ const app = express()
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: "https://blog-space-gjys7vhuv-prajwal-dube26.vercel.app",
+  origin: "https://blog-space-drltb03l8-prajwal-dube26.vercel.app",
   // origin: [
   //     "http://localhost:3000",
   //     "https://blog-space-cfew116xa-prajwal-dube26.vercel.app"
