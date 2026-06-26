@@ -9,6 +9,7 @@ const BlogState = (props) => {
   const [user_detail,setuser_detail]= useState(userinitial)
   const [comments, setcomments] = useState([]);
   const [likes, setlikes] = useState([]);
+  const [isloggedin, setisloggedin] = useState(0);
 
 
 
@@ -36,11 +37,13 @@ const BlogState = (props) => {
     const json = await response.json();
     if (!response.ok) 
     {
+      setisloggedin(0);
       console.log(json);
       alert(json.error);
       return;
     }
 
+    setisloggedin(1);
     console.log(json.authtoken);
     
   };
@@ -58,6 +61,16 @@ const BlogState = (props) => {
       credentials: "include"
 
     });
+
+    if(response.ok)
+    {
+      setisloggedin(1);
+    }
+    else
+    {
+      setisloggedin(0);
+      return;
+    }
     const json=await response.json();
     const token=json.authtoken;
     console.log(token)
@@ -81,6 +94,13 @@ const BlogState = (props) => {
         date:"00/00/0000",
         _id:"000000"
       });
+
+      setisloggedin(0);
+    }
+    else
+    {
+      setisloggedin(1);
+      return;
     }
     console.log("Logout successfully\n",response);
 
@@ -316,7 +336,7 @@ const BlogState = (props) => {
 
 
   return (
-    <BlogContext.Provider value={{blog,getblogbyid,add_blog,deleteblog,addcomment,getcomments,comments,togglelike,getlikes,likes,editblog,featchblogs,featchallblogs,setblog,Signup,login,logout,featchuser,user_detail}}>
+    <BlogContext.Provider value={{blog,getblogbyid,add_blog,deleteblog,addcomment,getcomments,comments,togglelike,getlikes,likes,editblog,featchblogs,featchallblogs,setblog,Signup,login,logout,featchuser,user_detail,isloggedin}}>
       {props.children}
     </BlogContext.Provider>
   );

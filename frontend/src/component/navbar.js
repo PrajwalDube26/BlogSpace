@@ -129,7 +129,8 @@
 
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
+import blogContext from '../context/blog/blogcontext';
 import {
   Link,
   useLocation
@@ -140,6 +141,9 @@ const Navbar = () => {
   let location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const blog_context = useContext(blogContext);
+  const { isloggedin } = blog_context;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -215,29 +219,36 @@ const Navbar = () => {
               Your Detail
             </Link>
             
-            <Link 
-              className="nav-button login-btn" 
-              to="/login"
-              onClick={closeMobileMenu}
-            >
-              Login
-            </Link>
-            
-            <Link 
-              className="nav-button signup-btn" 
-              to="/signup"
-              onClick={closeMobileMenu}
-            >
-              SignUp
-            </Link>
-
-            <Link 
-              className="nav-button signup-btn" 
-              to="/logout"
-              onClick={closeMobileMenu}
-            >
-              Logout
-            </Link>
+            {!isloggedin 
+              ?(
+                <>
+                  <Link 
+                    className="nav-button login-btn" 
+                    to="/login"
+                    onClick={closeMobileMenu}
+                  >
+                    Login
+                  </Link>
+                  
+                  <Link 
+                    className="nav-button signup-btn" 
+                    to="/signup"
+                    onClick={closeMobileMenu}
+                  >
+                    SignUp
+                  </Link>
+                </>
+              )
+              :(
+                <Link 
+                  className="nav-button signup-btn" 
+                  to="/logout"
+                  onClick={closeMobileMenu}
+                >
+                  Logout
+                </Link>
+              )
+            }
           </li>
         </ul>
         
