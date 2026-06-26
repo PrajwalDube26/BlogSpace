@@ -17,10 +17,16 @@ router.post('/SingUp',[
     body('password').isLength({ min: 3 })
 
 ],async(req,res)=>{
+    console.log(req.body);
+    
     const myValidationResult = validationResult(req);
-    if(!myValidationResult.isEmpty())
-    {
-        return res.status(400).send("use correct credential");
+    if (!myValidationResult.isEmpty()) {
+        console.log("Validation Errors:", myValidationResult.array());
+
+        return res.status(400).json({
+            error: "Use correct credentials",
+            errors: myValidationResult.array()
+        });
     }
 
 
@@ -29,7 +35,9 @@ router.post('/SingUp',[
         let dublicate=await userSchema.findOne({email:req.body.email})
         if(dublicate)
         {
-            return res.status(400).send("this email is already taken");
+            return res.status(400).json({
+                error: "This email is already taken"
+            });
         }
 
         const salt = bcrypt.genSaltSync(10);
@@ -59,7 +67,9 @@ router.post('/SingUp',[
     catch (error) 
     {
         console.error(error.message);
-        return res.status(500).send("internal server error occure");
+        return res.status(400).json({
+            error: "internal server error occure"
+        });
     }
 
 })
