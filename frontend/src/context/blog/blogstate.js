@@ -72,10 +72,15 @@ const BlogState = (props) => {
       credentials: "include"
 
     });
-    
+
     if (response.ok) 
     {
-      setuser_detail(null);
+      setuser_detail({
+        name:"User Name",
+        email:"user@example.com",
+        date:"00/00/0000",
+        _id:"000000"
+      });
     }
     console.log("Logout successfully\n",response);
 
