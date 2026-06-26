@@ -15,7 +15,7 @@ const corsOptions = {
   // origin: "https://blog-space-drltb03l8-prajwal-dube26.vercel.app",
   origin: [
       "http://localhost:3000",
-      "https://blog-space-drltb03l8-prajwal-dube26.vercel.app"
+      "https://blog-space-6ztca5qjn-prajwal-dube26.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
