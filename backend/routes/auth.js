@@ -11,7 +11,7 @@ const jwt_secret=process.env.JWT_SECRET;
 
 //Router 1:SingUp  :: login not required
 
-router.post('/SingUp',upload.single('photo'),[
+router.post('/SingUp',[
     body('name').isLength({ min: 3 }),
     body('email').isEmail(),
     body('password').isLength({ min: 3 })
@@ -35,7 +35,7 @@ router.post('/SingUp',upload.single('photo'),[
         const salt = bcrypt.genSaltSync(10);
         const secpass=await bcrypt.hash(req.body.password, salt);
 
-        const user_to_save=new userSchema({name:req.body.name,email:req.body.email,password:secpass,photo:req.file.path});
+        const user_to_save=new userSchema({name:req.body.name,email:req.body.email,password:secpass});
 
         const savedUser=await user_to_save.save();
 

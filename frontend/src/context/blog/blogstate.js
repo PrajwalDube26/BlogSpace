@@ -12,12 +12,12 @@ const BlogState = (props) => {
 
 
 
-  const Signup = async (name, email, password, photo) => {
+  const Signup = async (name, email, password) => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("photo", photo); // <-- photo must be File object from <input type="file">
+    // formData.append("photo", photo); // <-- photo must be File object from <input type="file">
 
     const response = await fetch(`https://blogspace-backend-shaz.onrender.com/api/auth2/SingUp`, {
       method: "POST",

@@ -85,7 +85,7 @@ const Signup = () => {
   const blog_context = useContext(blogContext);
   const { Signup } = blog_context;
 
-  const [credentials, setCredentials] = useState({ name: "", email: "", password: "",photo:null });
+  const [credentials, setCredentials] = useState({ name: "", email: "", password: ""});
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -93,17 +93,13 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await Signup(credentials.name, credentials.email, credentials.password,credentials.photo);
-      setCredentials({ name: "", email: "", password: "",photo:"" });
+      await Signup(credentials.name, credentials.email, credentials.password);
+      setCredentials({ name: "", email: "", password: "" });
     } catch (error) {
       console.error("Signup error:", error);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const onChangefile = (e) => {
-    setCredentials({ ...credentials, photo: e.target.files[0] });
   };
 
 
@@ -124,28 +120,6 @@ const Signup = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="signup-form" action="/upload" method="POST" encType="multipart/form-data">
-
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-              Photo
-            </label>
-            <div className="input-wrapper">
-              <input
-                type="file"
-                className="form-input"
-                id="photo"
-                name="photo"
-                onChange={onChangefile}
-                required
-                placeholder="Upload your photo"
-              />
-            </div>
-          </div>
-
 
           <div className="form-group">
             <label htmlFor="name" className="form-label">
@@ -304,8 +278,8 @@ export default Signup;
 //   const [credentials, setCredentials] = useState({
 //     name: "",
 //     email: "",
-//     password: "",
-//     photo: null
+//     password: ""
+
 //   });
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [isLoading, setIsLoading] = useState(false);
@@ -320,7 +294,7 @@ export default Signup;
 //       formData.append("name", credentials.name);
 //       formData.append("email", credentials.email);
 //       formData.append("password", credentials.password);
-//       formData.append("photo", credentials.photo);
+
 
 //       // Example: send request to your backend
 //       const res = await fetch("http://localhost:5000/upload", {
@@ -330,7 +304,7 @@ export default Signup;
 
 //       if (!res.ok) throw new Error("Signup failed");
 //       console.log("Signup success!");
-//       setCredentials({ name: "", email: "", password: "", photo: null });
+//       setCredentials({ name: "", email: "", password: "" });
 //     } catch (error) {
 //       console.error("Signup error:", error);
 //     } finally {
@@ -339,11 +313,7 @@ export default Signup;
 //   };
 
 //   const onChange = (e) => {
-//     if (e.target.name === "photo") {
-//       setCredentials({ ...credentials, photo: e.target.files[0] });
-//     } else {
-//       setCredentials({ ...credentials, [e.target.name]: e.target.value });
-//     }
+//     setCredentials({ ...credentials, [e.target.name]: e.target.value });
 //   };
 
 //   const togglePasswordVisibility = () => {
@@ -355,18 +325,6 @@ export default Signup;
 //       <div className="signup-card">
 //         <h2>Create Account</h2>
 //         <form onSubmit={handleSubmit} encType="multipart/form-data">
-
-//           {/* File Upload */}
-//           <div className="form-group">
-//             <label htmlFor="photo">Photo</label>
-//             <input
-//               type="file"
-//               id="photo"
-//               name="photo"
-//               onChange={onChange}
-//               required
-//             />
-//           </div>
 
 //           {/* Name */}
 //           <div className="form-group">
