@@ -1,6 +1,6 @@
 import React from 'react'
 
-const alert = (props) => {
+const Alert = (props) => {
   return (
     props.alert && <div className="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{props.alert}</strong>
@@ -9,4 +9,4 @@ const alert = (props) => {
   )
 }
 
-export default alert
+export default Alert
